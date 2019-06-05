@@ -16,8 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path,include
+from .views import FileView
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    path('search/', include('APIserver.urls')),
+    path('', FileView.as_view(), name='get_request'),
 ]
