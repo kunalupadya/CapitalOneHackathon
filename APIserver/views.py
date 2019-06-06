@@ -5,6 +5,7 @@ from rest_framework import status
 import time
 import kb
 import json
+import math
 
 
 # Create your views here.
@@ -41,8 +42,11 @@ class FileView(APIView):
         # print("8")
         results = my_kb.search(procedure, age, days, price)
         results = sorted(results, key=lambda k: k['Cost'])
+        resultstoremove = []
         for each in results:
             print(each['Cost'])
+            if  math.isnan(each['Cost']):
+                resultstoremove.append(each)
             if each['Location'] == '1 Hospital Rd, Oak Bluffs, MA 02557':
                 each['coords'] = {'lat':41.460258, 'lng':-70.583038}
             elif each['Location'] == '1414 Kuhl Ave, Orlando, FL 32806':
@@ -61,7 +65,8 @@ class FileView(APIView):
                 each['coords'] = {'lat': 51.507351, 'lng': -0.127758}
             else:
                 each['coords'] = {'lat': 56.130367, 'lng': -106.346771}
-
+        for each in resultstoremove:
+            results.remove(each)
         # print("9")
         print(results)
             # ret = ""
