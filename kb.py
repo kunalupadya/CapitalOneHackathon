@@ -108,6 +108,7 @@ class KB():
     
     def search(self, operation_or_condition, age = 40, urgency = 100, budget = np.math.inf):
         results = []
+        print(urgency)
         urgency = float(urgency)
         results_canada = self.canada.search(operation_or_condition, age, budget)
         results_gb = self.gb.search(operation_or_condition, budget)
