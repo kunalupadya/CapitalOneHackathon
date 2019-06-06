@@ -9,7 +9,10 @@ class Canada():
     def read(self, path):
         df = pd.read_excel(path)
         df.dropna(inplace = True)
-        print(df)
+        names = df.iloc[0]
+        for index, column in enumerate(df.columns):
+            df.rename(column = {column:names[index]}, inplace = True)
+        df.drop(0)
         df["Estimated average cost"] = df["Estimated average cost"].apply(lambda x: float(x))
         return df
     
