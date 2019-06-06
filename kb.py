@@ -108,7 +108,7 @@ class KB():
     
     def search(self, operation_or_condition, age = 40, urgency = 100, budget = np.math.inf):
         results = []
-        print(urgency)
+        # print(urgency)
         urgency = float(urgency)
         results_canada = self.canada.search(operation_or_condition, age, budget)
         results_gb = self.gb.search(operation_or_condition, budget)
@@ -129,8 +129,8 @@ class KB():
         for result in results_generics:
             for index in result.index:
                 city = result["Location"][index].lower().title()
-                print(float(result["Cost"][index]))
+                # print(float(result["Cost"][index]))
                 description = result["Description"][index].lower().title()
-                print(self.costs[0].search(city, urgency),0)
+                # print(self.costs[0].search(city, urgency),0)
                 results.append({"Location": city, "Description": description, "Cost": round(float(result["Cost"][index]) + self.costs[0].search(city, urgency),0)})
         return results
