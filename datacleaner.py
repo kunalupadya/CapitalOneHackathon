@@ -57,4 +57,4 @@ for each in filetoexamine.iloc[:, namecol]:
     ind += 1
 print(filetoexamine.head())
 filetoexamine.reset_index(inplace=True,drop=True)
-filetoexamine.to_csv("/Users/kunalupadya/CapitalOneHackathon/cleanhospitals/"+name)
+filetoexamine.to_excel("/Users/kunalupadya/CapitalOneHackathon/cleanhospitals/"+name+".xlsx")
