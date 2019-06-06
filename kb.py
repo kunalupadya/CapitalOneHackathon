@@ -91,7 +91,7 @@ class FlightCosts():
         for index, row in self.df["City"].items():
             if city.lower() not in row.lower():
                 df = df.drop(index)
-        df = df[df["Days Out"] < days]
+        df = df[df["Days Out"] < float(days)]
         df["Price"] = df['Price'].apply(lambda x : float("".join("".join(str(x).split(",")).split("$"))))
         return df["Price"].mean()
         
