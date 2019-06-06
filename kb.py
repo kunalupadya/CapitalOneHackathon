@@ -106,6 +106,7 @@ class KB():
     
     def search(self, operation_or_condition, age = 40, urgency = 100, budget = np.math.inf):
         results = []
+        urgency = float(urgency)
         results_canada = self.canada.search(operation_or_condition, age, budget)
         results_gb = self.gb.search(operation_or_condition, budget)
         results_generics = [generic.search(operation_or_condition, budget) for generic in self.generics]
@@ -115,16 +116,16 @@ class KB():
         for index in results_canada.index:
             city = f"{results_canada['Location'][index].lower().title()}, Canada"
             description = results_canada["Description"][index].lower().title()
-            results.append({"Location": f"{city}, Canada", "Description": description, "Cost": round(results_canada["Cost"][index] + self.costs[1].search(city, urgency),0)})
+            results.append({"Location": f"{city}, Canada", "Description": description, "Cost": round(float(results_canada["Cost"][index]) + self.costs[1].search(city, urgency),0)})
         ctr = 0
         for index in results_gb.index:
             city = f"London, England"
             description = results_gb["Description"][index].lower().title()
-            results.append({"Location": f"{cities[ctr]}, England", "Description": description, "Cost": round(results_gb["Cost"][index],0) + 2000})
+            results.append({"Location": f"{cities[ctr]}, England", "Description": description, "Cost": round(float(results_gb["Cost"][index]),0) + 2000})
             ctr += 1
         for result in results_generics:
             for index in result.index:
                 city = result["Location"][index].lower().title()
                 description = result["Description"][index].lower().title()
-                results.append({"Location": city, "Description": description, "Cost": round(result["Cost"][index] + self.costs[0].search(city, urgency),0)})
+                results.append({"Location": city, "Description": description, "Cost": round(float(result["Cost"][index]) + self.costs[0].search(city, urgency),0)})
         return results
