@@ -2,6 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import status
+import time
+import kb
 
 # Create your views here.
 
@@ -19,14 +21,19 @@ class FileView(APIView):
             # print("3")
             age = request.data.get('age')
             # print("4")
-            date = request.data.get('surgeryDate')
+            days = request.data.get('daysFromToday')
             # print("5")
-            ret = ""
-            ret += procedure+"\n"
-            ret += location + "\n"
-            ret += price + "\n"
-            ret += age + "\n"
-            ret += date + "\n"
+            paths = ['pce_results_2018_en.xlsx', 'uk data.xlsx', "cleanhospitals/AtlantiCare.xlsx", 'cleanhospitals/AuroraHealth.xlsx','cleanhospitals/DukeHospital.xlsx', 'cleanhospitals/MarthasVinyard.xlsx', 'cleanhospitals/MountSinai.xlsx', 'cleanhospitals/OrlandoHealth.xlsx']
+            costs = ['america_list.xlsx', 'canada_list.xlsx']
+            my_kb = kb.KB(paths, costs, 15)
+
+            results = my_kb.search(procedure, age, days, price)
+            # ret = ""
+            # ret += procedure+"\n"
+            # ret += location + "\n"
+            # ret += price + "\n"
+            # ret += age + "\n"
+            # ret += date + "\n"
         except:
             return Response("Invalid request", status=status.HTTP_400_BAD_REQUEST)
-        return Response(ret, status=status.HTTP_200_OK)
+        return Response(results, status=status.HTTP_200_OK)
