@@ -55,7 +55,7 @@ class GreatBritain():
             if operation_or_condition.lower() not in row.lower():
                 indices.append(int(index))
         whole_operation = self.df.drop(indices) # finding the correct operation
-        operation = whole_operation[whole_operation["Unit Cost "] <= budget]
+        operation = whole_operation[whole_operation["Unit Cost "] <= float(budget)]
         operation = operation.rename(columns = {"Unit Cost ": "Cost", "Currency Description":"Description"})
         if self.n >= operation["Cost"].count():
             return operation
@@ -74,7 +74,7 @@ class Generic():
     def search(self, operation_or_condition, budget = np.math.inf):
         self.df["Cost"] = self.df["Cost"].apply(lambda x : float("".join("".join(str(x).split(",")).split("$"))))
         self.df['Location'] = self.df["Location"].apply(lambda x: ", ".join("".join(str(x).split("\xa0")).split(",")))
-        operation = self.df[self.df["Cost"] <= budget]
+        operation = self.df[self.df["Cost"] <= float(budget)]
         indices = []
         for index, row in operation["Description"].items():
             if operation_or_condition.lower() not in row.lower():
