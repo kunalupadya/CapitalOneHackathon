@@ -16,7 +16,7 @@ class FileView(APIView):
     def post(self, request, *args, **kwargs):
         # try:
         print(request.data)
-        data = json.loads(request.body.decode('utf-8'))
+        data = json.loads(request.data.decode('utf-8'))
         print(data)
         procedure = request.data.get('procedure')
         print(procedure)
