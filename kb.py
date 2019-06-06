@@ -90,7 +90,7 @@ class FlightCosts():
     def search(self, city, days):
         df = self.df
         for index, row in self.df["City"].items():
-            if city.lower() not in row.lower():
+            if row.lower() not in city.lower():
                 df = df.drop(index)
         if len(df.index) == 0:
             return 0
