@@ -44,7 +44,6 @@ class FileView(APIView):
         results = sorted(results, key=lambda k: k['Cost'])
         resultstoremove = []
         for each in results:
-            print(each['Cost'])
             if  math.isnan(each['Cost']):
                 resultstoremove.append(each)
             if each['Location'] == '1 Hospital Rd, Oak Bluffs, MA 02557':
@@ -68,7 +67,9 @@ class FileView(APIView):
         for each in resultstoremove:
             results.remove(each)
         # print("9")
-        print(results)
+        for each in results:
+            print(each)
+        # print(results)
             # ret = ""
             # ret += procedure+"\n"
             # ret += location + "\n"
