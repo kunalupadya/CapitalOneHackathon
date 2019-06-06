@@ -62,7 +62,7 @@ class FileView(APIView):
             elif "England" in each['Location']:
                 each['coords'] = {'lat': 51.507351, 'lng': -0.127758}
             else:
-                each['coords'] = {'lat': 51.507351, 'lng': -0.127758}#56.130367, 'lng': -106.346771}
+                each['coords'] = {'lat': 56.130367, 'lng': -106.346771}
         for each in resultstoremove:
             results.remove(each)
         # print("9")
