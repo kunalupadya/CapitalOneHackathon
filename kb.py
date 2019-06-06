@@ -13,6 +13,7 @@ class Canada():
         for index, column in enumerate(df.columns):
             df = df.rename(columns = {column:names[index]})
         df.drop(0)
+        print(df)
         df["Estimated average cost"] = df["Estimated average cost"].apply(lambda x: float(x))
         return df
     
