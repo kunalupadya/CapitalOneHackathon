@@ -30,6 +30,7 @@ class FileView(APIView):
         my_kb = kb.KB(paths, costs, 15)
         print("8")
         results = my_kb.search(procedure, age, days, price)
+        ret = {'data':results}
         print("9")
             # ret = ""
             # ret += procedure+"\n"
@@ -39,4 +40,4 @@ class FileView(APIView):
             # ret += date + "\n"
         # except:
         #     return Response("Invalid request", status=status.HTTP_400_BAD_REQUEST)
-        return Response(results, status=status.HTTP_200_OK)
+        return Response(ret, status=status.HTTP_200_OK)

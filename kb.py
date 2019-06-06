@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import json
 
 class Canada():
     def __init__(self, path = None, n = 15):
