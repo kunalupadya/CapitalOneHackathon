@@ -2,9 +2,10 @@ import pandas
 import string
 import re
 
-name = "AtlantiCare"
-namecol = 0
+name = "AuroraHealth"
+namecol = 2
 filepathtoexamine = '/Users/kunalupadya/CapitalOneHackathon/csvs to edit/2019finalpricetransparencyforjan1.csv'
+location = '2845 Greenbrier Rd, Green Bay, WI 54311'
 
 
 compare = pandas.read_excel("fulllistofthings.xlsx", header=None)
@@ -29,8 +30,8 @@ for each in compare[0]:
         if word not in wordstoignore and not is_number(word):
             results.add(word)
 
-# filetoexamine = pandas.read_excel(filepathtoexamine)
-filetoexamine = pandas.read_csv(filepathtoexamine)
+filetoexamine = pandas.read_excel(filepathtoexamine)
+# filetoexamine = pandas.read_csv(filepathtoexamine)
 print(filetoexamine.head())
 filetoexamine.reset_index(inplace=True,drop=True)
 
@@ -55,6 +56,7 @@ for each in filetoexamine.iloc[:, namecol]:
     if not bool:
         filetoexamine.drop([ind], inplace=True)
     ind += 1
-print(filetoexamine.head())
+print(filetoexamine.head().to_string())
 filetoexamine.reset_index(inplace=True,drop=True)
+filetoexamine['Location'] = location
 filetoexamine.to_excel("/Users/kunalupadya/CapitalOneHackathon/cleanhospitals/"+name+".xlsx")
