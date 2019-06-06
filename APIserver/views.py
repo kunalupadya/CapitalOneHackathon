@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 import time
 import kb
+import json
+
 
 # Create your views here.
 
@@ -14,6 +16,8 @@ class FileView(APIView):
     def post(self, request, *args, **kwargs):
         # try:
         print(request.data)
+        data = json.loads(request.body.decode('utf-8'))
+        print(data)
         procedure = request.data.get('procedure')
         print(procedure)
         print("1")
