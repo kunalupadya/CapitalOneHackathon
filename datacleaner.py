@@ -2,10 +2,10 @@ import pandas
 import string
 import re
 
-name = "AuroraHealth"
-namecol = 2
-filepathtoexamine = '/Users/kunalupadya/CapitalOneHackathon/csvs to edit/2019finalpricetransparencyforjan1.csv'
-location = '2845 Greenbrier Rd, Green Bay, WI 54311'
+name = "OrlandoHealth"
+namecol = 0
+filepathtoexamine = '/Users/kunalupadya/Downloads/convertcsv.xlsx'
+location = '1414 Kuhl Ave, Orlando, FL 32806'
 
 
 compare = pandas.read_excel("fulllistofthings.xlsx", header=None)
