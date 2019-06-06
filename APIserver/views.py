@@ -14,12 +14,16 @@ class FileView(APIView):
     def post(self, request, *args, **kwargs):
         # try:
         procedure = request.data.get('procedure')
+        print(procedure)
         print("1")
         location = request.data.get('location')
+        print(location)
         print("2")
         price = request.data.get('price')
+        print(price)
         print("3")
         age = request.data.get('age')
+        print(age)
         print("4")
         days = request.data.get('surgeryDate')
         print(days)
