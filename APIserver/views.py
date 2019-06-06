@@ -31,7 +31,7 @@ class FileView(APIView):
         age = data['age']
         # print(age)
         # print("4")
-        days = data['surgeryDate']
+        # days = data['surgeryDate']
         # print(days)
         # print("5")
         paths = ['pce_results_2018_en.xlsx', 'uk data.xlsx', "cleanhospitals/AtlantiCare.xlsx", 'cleanhospitals/AuroraHealth.xlsx','cleanhospitals/DukeHospital.xlsx', 'cleanhospitals/MarthasVinyard.xlsx', 'cleanhospitals/MountSinai.xlsx', 'cleanhospitals/OrlandoHealth.xlsx']
