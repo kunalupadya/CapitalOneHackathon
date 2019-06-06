@@ -90,7 +90,7 @@ class FlightCosts():
     def search(self, city, days):
         df = self.df
         for index, row in self.df["City"].items():
-            if row.lower() not in city.lower():
+            if row.lower() not in city.lower() and city.lower() not in row.lower():
                 df = df.drop(index)
         if len(df.index) == 0:
             return 0
@@ -123,7 +123,7 @@ class KB():
         for index in results_gb.index:
             city = f"London, England"
             description = results_gb["Description"][index].lower().title()
-            results.append({"Location": f"{cities[ctr]}, England", "Description": description, "Cost": round(float(results_gb["Cost"][index]),0) + 2000})
+            results.append({"Location": f"{cities[ctr]}, England", "Description": description, "Cost": round(float(results_gb["Cost"][index]),0)})
             ctr += 1
         for result in results_generics:
             for index in result.index:
