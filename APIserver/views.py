@@ -78,4 +78,6 @@ class FileView(APIView):
             # ret += date + "\n"
         # except:
         #     return Response("Invalid request", status=status.HTTP_400_BAD_REQUEST)
+        if results == None:
+            results = []
         return Response(results, status=status.HTTP_200_OK)
