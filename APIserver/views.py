@@ -43,24 +43,23 @@ class FileView(APIView):
         results = my_kb.search(procedure, age, days, price)
         results = sorted(results, key=lambda k: k['Cost'])
         resultstoremove = []
+
         for each in results:
             if  math.isnan(each['Cost']):
                 resultstoremove.append(each)
-            if each['Location'] == '1 Hospital Rd, Oak Bluffs, MA 02557':
+            if each['Location'] == '1 Hospital Rd,  Oak Bluffs,  Ma 02557':
                 each['coords'] = {'lat':41.460258, 'lng':-70.583038}
-            elif each['Location'] == '1414 Kuhl Ave, Orlando, FL 32806':
+            elif each['Location'] == '1414 Kuhl Ave,  Orlando,  Fl 32806':
                 each['coords'] = {'lat':28.525920, 'lng':-81.377910}
-            elif each['Location'] == '1468 Madison Ave, New York, NY 10029':
+            elif each['Location'] == '1468 Madison Ave,  New York,  Ny 10029':
                 each['coords'] = {'lat':40.790310, 'lng':-73.952103}
-            elif each['Location'] == '2301 Erwin Rd, Durham, NC 27710':
+            elif each['Location'] ==  '2301 Erwin Rd,  Durham,  Nc 27710':
                 each['coords'] = {'lat':36.007359, 'lng':-78.937439}
-            elif each['Location'] == '2845 Greenbrier Rd, Green Bay, WI 54311':
+            elif each['Location'] == '2845 Greenbrier Rd,  Green Bay,  Wi 54311':
                 each['coords'] = {'lat':44.475250, 'lng':-87.940560}
-            elif each['Location'] == 'Atlantic City, New Jersey, United States':
+            elif each['Location'] == 'Atlantic City, New Jersey, United States':
                 each['coords'] = {'lat':39.360610, 'lng': -74.431880}
-            elif each['Location'] in ["Greater London", "Buckinghamshire", "Cambridgeshire", "Durham", "East Riding of Yorkshire", "East Sussex ",
-                    "Essex", "Gloucestershire", "Greater Manchester","Halton", "Hampshire", "Hartlepool",
-                 "Herefordshire", "Oxfordshire", "Rutland", "Shropshire", "Slough", "Somerset"]:
+            elif "England" in each['Location']:
                 each['coords'] = {'lat': 51.507351, 'lng': -0.127758}
             else:
                 each['coords'] = {'lat': 51.507351, 'lng': -0.127758}#56.130367, 'lng': -106.346771}
