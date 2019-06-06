@@ -92,6 +92,8 @@ class FlightCosts():
         for index, row in self.df["City"].items():
             if city.lower() not in row.lower():
                 df = df.drop(index)
+        if len(df.index) == 0:
+            return 0
         df = df[df["Days Out"] < float(days)]
         df["Price"] = df['Price'].apply(lambda x : float("".join("".join(str(x).split(",")).split("$"))))
         return df["Price"].mean()
@@ -128,5 +130,5 @@ class KB():
                 city = result["Location"][index].lower().title()
                 print(float(result["Cost"][index]))
                 description = result["Description"][index].lower().title()
-                results.append({"Location": city, "Description": description, "Cost": round(float(result["Cost"][index]),0)})
+                results.append({"Location": city, "Description": description, "Cost": round(float(result["Cost"][index]) + self.costs[0].search(city, urgency),0)})
         return results
