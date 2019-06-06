@@ -126,6 +126,7 @@ class KB():
         for result in results_generics:
             for index in result.index:
                 city = result["Location"][index].lower().title()
+                print(float(result["Cost"][index]))
                 description = result["Description"][index].lower().title()
                 results.append({"Location": city, "Description": description, "Cost": round(float(result["Cost"][index]) + self.costs[0].search(city, urgency),0)})
         return results
