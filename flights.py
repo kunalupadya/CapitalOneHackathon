@@ -28,7 +28,7 @@ class CheapFlights:
 	    fly_from = self.browser.find_element_by_xpath("//input[@id='flight-origin-hp-flight']")
 	    time.sleep(1)
 	    fly_from.clear()
-	    time.sleep(1.5)
+	    time.sleep(0.5)
 	    fly_from.send_keys('  ' + dep_country)
 	    time.sleep(1.5)
 	    first_item = self.browser.find_element_by_xpath("//a[@id='aria-option-0']")
@@ -39,7 +39,7 @@ class CheapFlights:
 	    fly_to = self.browser.find_element_by_xpath("//input[@id='flight-destination-hp-flight']")
 	    time.sleep(1)
 	    fly_to.clear()
-	    time.sleep(1.5)
+	    time.sleep(0.5)
 	    fly_to.send_keys('  ' + arrival_country)
 	    time.sleep(1.5)
 	    first_item = self.browser.find_element_by_xpath("//a[@id='aria-option-0']")
@@ -149,11 +149,11 @@ class CheapFlights:
 		self.dep_date_chooser(dep_date_list[1], dep_date_list[2], dep_date_list[0])
 		self.return_date_chooser(arr_date_list[1], arr_date_list[2], arr_date_list[0])
 		self.search()
-		time.sleep(2)
+		time.sleep(15)
 		self.compile_data()
+		time.sleep(9)
 		current_values = df.iloc[0]
 		cheapest_price = current_values[-1]
-		print("gang")
 		self.browser.close()
 		return cheapest_price
 
