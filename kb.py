@@ -9,6 +9,7 @@ class Canada():
     def read(self, path):
         df = pd.read_excel(path)
         df.dropna(inplace = True)
+        print(df)
         df["Estimated average cost"] = df["Estimated average cost"].apply(lambda x: float(x))
         return df
     
