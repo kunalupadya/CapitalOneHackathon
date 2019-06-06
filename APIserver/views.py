@@ -14,20 +14,23 @@ class FileView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             procedure = request.data.get('procedure')
-            # print("1")
+            print("1")
             location = request.data.get('location')
-            # print("2")
+            print("2")
             price = request.data.get('price')
-            # print("3")
+            print("3")
             age = request.data.get('age')
-            # print("4")
+            print("4")
             days = request.data.get('daysFromToday')
-            # print("5")
+            print("5")
             paths = ['pce_results_2018_en.xlsx', 'uk data.xlsx', "cleanhospitals/AtlantiCare.xlsx", 'cleanhospitals/AuroraHealth.xlsx','cleanhospitals/DukeHospital.xlsx', 'cleanhospitals/MarthasVinyard.xlsx', 'cleanhospitals/MountSinai.xlsx', 'cleanhospitals/OrlandoHealth.xlsx']
+            print("6")
             costs = ['america_list.xlsx', 'canada_list.xlsx']
+            print("7")
             my_kb = kb.KB(paths, costs, 15)
-
+            print("8")
             results = my_kb.search(procedure, age, days, price)
+            print("9")
             # ret = ""
             # ret += procedure+"\n"
             # ret += location + "\n"
