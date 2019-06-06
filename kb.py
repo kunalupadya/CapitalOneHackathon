@@ -31,6 +31,7 @@ class Canada():
         else:
             age_sub_group += "60–79 years (adult)"
         operation = whole_operation[whole_operation["Age group"] == age_sub_group]
+        operation["Estimated average cost"] = operation["Estimated average cost"].apply(float)
         operation = operation[operation["Estimated average cost"] <= budget]
         smallest = operation.rename(columns = {"Estimated average cost": "Cost", "Jurisdiction": "Location", "Case Mix Group (description)":"Description"})
         if self.n >= smallest["Cost"].count():
