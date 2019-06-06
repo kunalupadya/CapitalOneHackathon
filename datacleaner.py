@@ -31,27 +31,27 @@ print(filetoexamine.head())
 
 # newdf = pandas.DataFrame(filetoexamine)
 ind = 0
-for index in filetoexamine.index:
-    for word in wordstoignore:
-        if filetoexamine["DESCRIPTION"].iloc[index] == word:
-            filetoexamine.drop(index, inplace=True)
-            break
-# for each in filetoexamine.iloc[:, 0]:
-#     # print(each)
-#     # print(type(each))
-#     if type(each) != str:
-#         continue
-#     words = re.split('/|\s',each)
-#     bool = False
-#     for word in words:
-#         word = word.translate(str.maketrans('', '', string.punctuation))
-#         if word.lower() in results:
-#             bool = True
-#             # meep = filetoexamine.iloc[ind]
-#             # newdf.append(meep)
-#     if not bool:
-#         filetoexamine.drop([ind])
-#     ind += 1
+# for index in filetoexamine.index:
+#     for word in wordstoignore:
+#         if filetoexamine["DESCRIPTION"].iloc[index] == word:
+#             filetoexamine.drop(index, inplace=True)
+#             break
+for each in filetoexamine.iloc[:, 0]:
+    # print(each)
+    # print(type(each))
+    if type(each) != str:
+        continue
+    words = re.split('/|\s',each)
+    bool = False
+    for word in words:
+        word = word.translate(str.maketrans('', '', string.punctuation))
+        if word.lower() in results:
+            bool = True
+            # meep = filetoexamine.iloc[ind]
+            # newdf.append(meep)
+    if not bool:
+        filetoexamine.drop([ind], inplace=True)
+    ind += 1
 
 
 print(filetoexamine.head())
