@@ -13,6 +13,7 @@ class FileView(APIView):
 
     def post(self, request, *args, **kwargs):
         # try:
+        print(request.data)
         procedure = request.data.get('procedure')
         print(procedure)
         print("1")
