@@ -16,21 +16,21 @@ class FileView(APIView):
     def post(self, request, *args, **kwargs):
         # try:
         data = json.loads(request.body.decode('utf-8'))
-        print(request.data)
-        print(data)
-        procedure = request.data.get('procedure')
+        # print(request.data)
+        # print(data)
+        procedure = data['procedure']
         print(procedure)
         print("1")
-        location = request.data.get('location')
+        location = data['location']
         print(location)
         print("2")
-        price = request.data.get('price')
+        price = data['price']
         print(price)
         print("3")
-        age = request.data.get('age')
+        age = data['age']
         print(age)
         print("4")
-        days = request.data.get('surgeryDate')
+        days = data['surgeryDate']
         print(days)
         print("5")
         paths = ['pce_results_2018_en.xlsx', 'uk data.xlsx', "cleanhospitals/AtlantiCare.xlsx", 'cleanhospitals/AuroraHealth.xlsx','cleanhospitals/DukeHospital.xlsx', 'cleanhospitals/MarthasVinyard.xlsx', 'cleanhospitals/MountSinai.xlsx', 'cleanhospitals/OrlandoHealth.xlsx']
