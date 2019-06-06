@@ -117,7 +117,7 @@ class KB():
                     "Essex", "Gloucestershire", "Greater Manchester","Halton", "Hampshire", "Hartlepool", 
                  "Herefordshire", "Oxfordshire", "Rutland", "Shropshire", "Slough", "Somerset"]
         for index in results_canada.index:
-            city = f"{results_canada['Location'][index].lower().title()}, Canada"
+            city = f"{results_canada['Location'][index].lower().title()}"
             description = results_canada["Description"][index].lower().title()
             results.append({"Location": f"{city}, Canada", "Description": description, "Cost": round(float(results_canada["Cost"][index]) + self.costs[1].search(city, urgency),0)})
         ctr = 0
