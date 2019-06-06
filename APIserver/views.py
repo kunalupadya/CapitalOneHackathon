@@ -42,7 +42,7 @@ class FileView(APIView):
         results = my_kb.search(procedure, age, days, price)
         results = sorted(results, key=lambda k: k['Cost'])
         for each in results:
-            print(each)
+            print(each['Cost'])
             if each['Location'] == '1 Hospital Rd, Oak Bluffs, MA 02557':
                 each['coords'] = {'lat':41.460258, 'lng':-70.583038}
             elif each['Location'] == '1414 Kuhl Ave, Orlando, FL 32806':
