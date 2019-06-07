@@ -1,7 +1,8 @@
 <template>
     <div id="app">
         <router-view name="header" ></router-view>
-        <router-view ></router-view>
+        <router-view @search="renderTiles(data)"
+                     ></router-view>
     </div>
 </template>
 <script>
@@ -11,8 +12,12 @@ export default {
   components: {
     FadeTransition
   },
-  mounted() {
-    console.log('app moutned');
-  }
+  data() {
+    return{
+      listData: []
+    }
+  },
+
 };
 </script>
+

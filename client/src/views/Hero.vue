@@ -21,7 +21,7 @@
                       </h1>
                     </div>
                 </div>
-                <search-form></search-form>
+                <search-form ></search-form>
             </div>
         </div>
 
@@ -34,12 +34,6 @@ export default {
   components: {
     searchForm
   },
-  data() {
-    return {
-
-    }
-  },
-
 
 };
 </script>

@@ -11,13 +11,10 @@
             <slot name="container-pre"></slot>
             <slot name="brand">
                 <a class="navbar-brand" href="#" @click.prevent="onTitleClick">
-                    {{title}}
+                  {{title}}
                 </a>
             </slot>
-            <navbar-toggle-button :toggled="toggled"
-                                  :target="contentId"
-                                  @click.native.stop="toggled = !toggled">
-            </navbar-toggle-button>
+
 
             <slot name="container-after"></slot>
 

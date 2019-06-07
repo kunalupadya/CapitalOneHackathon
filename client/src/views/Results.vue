@@ -1,84 +1,78 @@
 <template>
   <div class='results-container'>
     <div class="list-view">
-      <card class="information-tile" shadow gradient="primary">
+      <card v-for="tileData in listData" class="information-tile" shadow
+            gradient="primary">
         <p>
             <span class="operation">
-              {{tileData.operation}}
+              {{tileData.Description}}
             </span>
-          <span class="cost">
-              {{tileData.cost}}
+          <span class="cost" style="font-weight: bold; font-size: 24px;">
+              ${{tileData.Cost}}
             </span>
         </p>
-        <p>{{tileData.city}}</p>
-        <p>{{tileData.description}}</p>
+        <p>{{tileData.Location}}</p>
       </card>
     </div>
     <div id="map">
       <GmapMap
         :center="center"
-        :zoom="2"
+        :zoom="3"
         map-type-id="terrain"
         style="width: 100%; height: calc(100% - 56px)"
       >
-        <GmapMarker
-          :key="index"
-          v-for="(m, index) in markers"
-          :position="m.position"
-          :clickable="true"
-          :draggable="true"
-          @click="center=m.position"
-        />
+        <GmapCluster>
+          <GmapMarker
+            :key="index"
+            v-for="(m, index) in listData"
+            :position="m.coords"
+            :clickable="true"
+            :draggable="true"
+            @click="center=m.coords"
+          />
+        </GmapCluster>
         <gmap-polyline
-                        v-for="path in markers"
-                       :path="[originalCenter, path.position]"
-                       :options="{ strokeColor:'#008000'}"></gmap-polyline>
+          v-for="(path, index) in listData"
+          :path="[originalCenter, path.coords]"
+          :options="{ strokeColor : 'index === 1' ? '#008000' :
+                      'red' }"></gmap-polyline>
       </GmapMap>
     </div>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue';
+  import GmapCluster from 'vue2-google-maps/dist/components/cluster' // replace src with dist if you have Babel issues
+  Vue.component('GmapCluster', GmapCluster);
 
   export default {
-
     data() {
       return {
-        tileData: {
-          operation: 'Lung Cancer Treatment',
-          city: 'London, Texas',
-          description: 'This treatment consists of using scissors',
-          cost: '$ 140'
-        },
+        listData: [],
         center: {
-          lat: 47,
-          lng: 70
+          lat: 37.5,
+          lng: -77.4
         },
         originalCenter: {
-          lat: 47,
-          lng: 70
-        },
-        markers: [
-          {
-            position: {
-              lat: 10,
-              lng: 10
-            }
-          },
-          {
-            position: {
-              lat: 12,
-              lng: 12
-            }
-          },
-          {
-            position: {
-              lat: 24,
-              lng: 24
-            }
-          }
-        ]
+          lat: 37.5,
+          lng: -77.4
+        }
       }
+    },
+    computed: {
+      markers() {
+        const arr = this.listData.filter((el) => {
+          return el.coords;
+        });
+
+      }
+    },
+    created() {
+      console.log(this.$store.getters.getAll);
+      this.listData = this.$store.getters.getAll;
+      this.$forceUpdate();
+      console.log('hello');
     },
   }
 </script>

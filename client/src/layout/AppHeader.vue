@@ -1,8 +1,11 @@
 <template>
     <header class="header-global">
-        <base-nav class="navbar-main" transparent :type="solid? 'default': ''" effect="dark" expand>
+        <base-nav class="navbar-main" transparent
+                  :type="solid? 'default': ''" effect="dark" expand
+                  style="height: 70px; ">
             <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
-                <img src="img/brand/white.png" alt="logo">
+                <p style="font-size: 2rem; line-height: 1">salus</p>
+                <!--<img src="img/brand/white.png" alt="logo">-->
             </router-link>
         </base-nav>
     </header>

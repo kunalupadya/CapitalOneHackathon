@@ -22,6 +22,13 @@
         <div class="submit-container">
           <base-button nativeType="submit">Submit</base-button>
         </div>
+        <FlowerSpinner
+          v-show="loading"
+          :animation-duration="2500"
+          :size="70"
+          style="margin: 0 auto;"
+          color="#ff1d5e"
+        />
       </form>
     </div>
   </div>
@@ -32,15 +39,16 @@
   import flatPicker from "vue-flatpickr-component";
   import "flatpickr/dist/flatpickr.css";
   import key from '../../../config';
+  import { FlowerSpinner } from 'epic-spinners';
   // http requests
   const axios = require('axios');
   export default {
     components: {
       flatPicker,
+      FlowerSpinner
     },
     async mounted() {
-      this.updateLocation();
-
+      // this.updateLocation();
     },
     data() {
       return {
@@ -51,20 +59,17 @@
           age: '',
           surgeryDate: new Date(),
         },
-        temp: ''
+        temp: '',
+        loading: false
       }
     },
     methods: {
       submitForm(e) {
-        // convert date
-        this.formData.surgeryDate = this.formData.surgeryDate.toISOString();
-        console.log(this.formData);
-        axios.get('http://localhost:3000/search', {
-          params: this.formData
-        })
-          .then((results) => {
-            console.log(results);
-          })
+        this.loading = true;
+        this.$store.dispatch('sendData', {data: this.formData,
+          router: this.$router});
+        // console.log('submit');
+
       },
       async updateLocation() {
         if (navigator.geolocation) {
@@ -76,13 +81,12 @@
               })
           });
 
-
           console.log('READ THIS');
           console.log(tosend)
         } else {
           console.log("Geolocation is not supported by this browser.");
         }
-      }
+      },
     },
     watch: {
       temp() {
